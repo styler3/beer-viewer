@@ -4,6 +4,11 @@ html, body {
   font-family: sans-serif;
   height: 100vh;
   overflow-y: hidden;
+  color: #333;
+}
+
+p {
+  line-height: 1.5;
 }
 
 h3, h4 {
