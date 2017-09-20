@@ -19,7 +19,7 @@ function buildCategoriesMenu() {
       type: "checkbox",
       id: "cat" + cat["id"],
       value: cat["id"],
-      class: "category",
+      name: "category",
       click: updateBeers
     })
 
@@ -35,8 +35,46 @@ function getCategories() {
   })
 }
 
+function selectedCategories() {
+  var selected_categories = [];
+  $.each($("input[name='category']:checked"), function() {
+    selected_categories.push($(this).val());
+  })
+  return selected_categories;
+}
+
+function selectBeer(id) {
+  console.log(id);
+}
+
+function buildBeersList(beers) {
+  $("#beers").html(""); //Clear the current results
+
+  for (i in beers) {
+    beer = beers[i];
+
+    var link = $("<a>", {
+      onclick: "selectBeer('" + beer['id'] + "')"
+    }).text(beer["name"]);
+
+    $("#beers").append(link);
+  }
+}
+
 function updateBeers() {
-  console.log("Updating Beers");
+  var url = API_URL + 'beers?';
+  var cats = selectedCategories();
+
+  //Attach query parameters
+  cats = cats.map(function(cat) {return 'styleId=' + cat});
+  url += cats.join("&");
+
+  if (cats.length) { //Not if empty
+    $.get(url, function(result) {
+      buildBeersList(result['data']);
+      //TODO: Deal with pagination
+    })
+  }
 }
 
 getCategories();
