@@ -4,12 +4,11 @@ A simple web application that consumes the
 results. Uses [JQuery](https://jquery.com/).
 
 ## Usage
-To run locally, run a simple web server in the top level directory of this
-repository. If you have Python 2.7 installed:
+Set your API key environment variable; in bash:
 ```
-python -m SimpleHTTPServer
+export BDB_API_KEY="XXXXXXYOURKEYXXXXXX"
 ```
-or for PHP:
+Run PHP in the top level directory of this repository:
 ```
 php -S localhost:8000
 ```
