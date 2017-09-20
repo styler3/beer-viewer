@@ -18,8 +18,6 @@ Then navigate your web browser to `localhost:8000`.
 The following decisions have been made for fast prototyping and should be
 changed before any live deployment:
 
-- JQuery and JQuery UI load directly from their website rather than
-  self-hosting.
-- The full JQuery UI is loaded (only a couple of elements from it are needed).
+- JQuery loads directly from the JQuery website rather than self-hosting.
 - All files are left in their original state, without any minification or
   optimisation.
