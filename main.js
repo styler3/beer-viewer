@@ -6,6 +6,7 @@ var beers = [];
 var current_page = 1;
 var page_count = 1;
 
+//Add all the checkboxes to the categories menu
 function buildCategoriesMenu() {
   for (i in categories) {
     var cat = categories[i];
@@ -31,6 +32,7 @@ function buildCategoriesMenu() {
   }
 }
 
+//Fetch all the available beer categories
 function getCategories() {
   $.get(API_URL + 'categories', function(result) {
     categories = result['data'];
@@ -38,6 +40,7 @@ function getCategories() {
   })
 }
 
+//Get the currently selected categories
 function selectedCategories() {
   var selected_categories = [];
   $.each($("input[name='category']:checked"), function() {
@@ -46,8 +49,8 @@ function selectedCategories() {
   return selected_categories;
 }
 
+//Build the section that displays the currently selected beer
 function buildSelectedSection(beer) {
-  
   $("#label").attr("src", "labels" in beer ? beer["labels"]["medium"] : ""),
   $("#title").text(beer["name"]);
   $("#description").text(beer["description"]);
@@ -56,15 +59,16 @@ function buildSelectedSection(beer) {
   $("#srm").text("srm" in beer ? beer["srm"]["name"] : "?");
   $("#og").text("originalGravity" in beer ? beer["originalGravity"] : "?");
   $("#style").text("style" in beer ? beer["style"]["name"] : "");
-
 }
 
+//Get the details of a beer
 function selectBeer(id) {
   $.get(API_URL + 'beer/' + id, function(result) {
     buildSelectedSection(result['data']);
   })
 }
 
+//Build the list of beers
 function buildBeersList() {
   $("#beers").html(""); //Clear the current results
 
@@ -90,11 +94,13 @@ function buildBeersList() {
   }
 }
 
+//Go to the next "page" of beers from the API
 function showMoreBeers() {
   current_page++;
   updateBeers(current_page);
 }
 
+//Get beers from the API
 function updateBeers(page) {
   var url = API_URL + 'beers?';
   var cats = selectedCategories();
@@ -120,4 +126,5 @@ function updateBeers(page) {
 }
 
 getCategories();
+//Avoid race condition between page load and API request
 $(document).ready(buildCategoriesMenu);
