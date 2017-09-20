@@ -43,8 +43,23 @@ function selectedCategories() {
   return selected_categories;
 }
 
+function buildSelectedSection(beer) {
+  
+  $("#label").attr("src", "labels" in beer ? beer["labels"]["medium"] : ""),
+  $("#title").text(beer["name"]);
+  $("#description").text(beer["description"]);
+  $("#abv").text(beer["abv"]);
+  $("#ibu").text(beer["ibu"]);
+  $("#srm").text(beer["srm"]);
+  $("#og").text(beer["originalGravity"]);
+  $("#style").text("style" in beer ? beer["style"]["name"] : "");
+
+}
+
 function selectBeer(id) {
-  console.log(id);
+  $.get(API_URL + 'beer/' + id, function(result) {
+    buildSelectedSection(result['data']);
+  })
 }
 
 function buildBeersList(beers) {
