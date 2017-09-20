@@ -1,8 +1,92 @@
 html, body {
   padding: 0;
   margin: 0;
+  font-family: sans-serif;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+h3, h4 {
+  font-weight: normal;
+}
+
+.beer-style {
+  font-size: 14px;
+  width: 100%;
+  background: #ccc;
+  padding: 10px;
+  height: 30%;
+  box-sizing: border-box;
+}
+
+.beer-style h2 {
+  text-transform: uppercase;
+  font-weight: normal;
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+#category {
+  margin: 0;
+}
+
+#category li {
+  list-style: none;
+  display: block;
+  float: left;
+  width: 33%;
+  margin: 3px 0;
+}
+
+#beers {
+  width: 30%;
+  height: 70%;
+  display: inline-block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #ddd;
 }
 
 #beers a {
   display: block;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  color: #3565b2;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+#selected {
+  width: 70%;
+  display: inline-block;
+  height: 70%;
+  position: absolute;
+  top: 30%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+#selected img {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+#selected img[src=""], #selected img:not([src]) {
+  display: none;
+}
+
+#selected h4 {
+  color: #3565b2;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.alcohol {
+  display: inline-block;
+  margin-right: 20px;
 }

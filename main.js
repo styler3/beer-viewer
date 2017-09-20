@@ -23,8 +23,10 @@ function buildCategoriesMenu() {
       click: updateBeers
     })
 
-    $("#category").append(checkbox);
-    $("#category").append(label);
+    var li = $("<li>").append(checkbox.add(label));
+
+    $("#category").append(li);
+    //$("#category").append(label);
   }
 }
 
@@ -48,10 +50,10 @@ function buildSelectedSection(beer) {
   $("#label").attr("src", "labels" in beer ? beer["labels"]["medium"] : ""),
   $("#title").text(beer["name"]);
   $("#description").text(beer["description"]);
-  $("#abv").text(beer["abv"]);
-  $("#ibu").text(beer["ibu"]);
-  $("#srm").text(beer["srm"]);
-  $("#og").text(beer["originalGravity"]);
+  $("#abv").text("abv" in beer ? beer["abv"] : "?");
+  $("#ibu").text("ibu" in beer ? beer["ibu"] : "?");
+  $("#srm").text("srm" in beer ? beer["srm"]["name"] : "?");
+  $("#og").text("originalGravity" in beer ? beer["originalGravity"] : "?");
   $("#style").text("style" in beer ? beer["style"]["name"] : "");
 
 }
