@@ -31,3 +31,4 @@ changed before any live deployment:
 - Create a loading indicator which runs while API requests are happening.
 - Pick a font.
 - Handle failed API requests.
+- Use a pre-processor for CSS and develop a clearly defined style guide.
