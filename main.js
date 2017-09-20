@@ -2,10 +2,9 @@ var API_URL = '/api/';
 
 var categories = [];
 var beers = [];
-var min_abv = 4;
-var max_abv = 7;
-var min_ibu = 12;
-var max_ibu = 22;
+
+var current_page = 1;
+var page_count = 1;
 
 function buildCategoriesMenu() {
   for (i in categories) {
@@ -20,7 +19,9 @@ function buildCategoriesMenu() {
       id: "cat" + cat["id"],
       value: cat["id"],
       name: "category",
-      click: updateBeers
+      click: function() {
+        updateBeers(1);
+      }
     })
 
     var li = $("<li>").append(checkbox.add(label));
@@ -64,7 +65,7 @@ function selectBeer(id) {
   })
 }
 
-function buildBeersList(beers) {
+function buildBeersList() {
   $("#beers").html(""); //Clear the current results
 
   for (i in beers) {
@@ -76,9 +77,25 @@ function buildBeersList(beers) {
 
     $("#beers").append(link);
   }
+
+  if (current_page < page_count) {
+
+    var show_more = $("<a>", {
+      class: "show-more",
+      click: showMoreBeers
+    }).text("Show more...");
+
+    $("#beers").append(show_more);
+
+  }
 }
 
-function updateBeers() {
+function showMoreBeers() {
+  current_page++;
+  updateBeers(current_page);
+}
+
+function updateBeers(page) {
   var url = API_URL + 'beers?';
   var cats = selectedCategories();
 
@@ -86,10 +103,18 @@ function updateBeers() {
   cats = cats.map(function(cat) {return 'styleId=' + cat});
   url += cats.join("&");
 
+  if (page == 1) {
+    beers = []
+  } else {
+    url += "&p=" + page;
+  }
+
   if (cats.length) { //Not if empty
     $.get(url, function(result) {
-      buildBeersList(result['data']);
-      //TODO: Deal with pagination
+      current_page = result['currentPage'];
+      page_count = result['numberOfPages'];
+      beers = beers.concat(result['data']);
+      buildBeersList();
     })
   }
 }
