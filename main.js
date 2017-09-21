@@ -51,7 +51,7 @@ function selectedCategories() {
 
 //Build the section that displays the currently selected beer
 function buildSelectedSection(beer) {
-  $("#label").attr("src", "labels" in beer ? beer["labels"]["medium"] : ""),
+  $("#label").attr("src", "labels" in beer ? beer["labels"]["large"] : ""),
   $("#title").text(beer["name"]);
   $("#description").text(beer["description"]);
   $("#abv").text("abv" in beer ? beer["abv"] : "?");
