@@ -16,11 +16,11 @@ h3, h4 {
 }
 
 .beer-style {
-  font-size: 14px;
+  font-size: 10px;
   width: 100%;
   background: #ccc;
-  padding: 10px;
-  height: 30%;
+  padding: 20px;
+  height: 25%;
   box-sizing: border-box;
 }
 
@@ -29,24 +29,26 @@ h3, h4 {
   font-weight: normal;
   margin: 0;
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 #category {
   margin: 0;
+  display: inline-block;
+  width: 750px;
+  padding: 0;
 }
 
 #category li {
   list-style: none;
-  display: block;
-  float: left;
-  width: 33%;
-  margin: 3px 0;
+  display: inline-block;
+  width: 25%;
+  margin: 2px 0;
 }
 
 #beers {
   width: 30%;
-  height: 70%;
+  height: 75%;
   display: inline-block;
   overflow-x: hidden;
   overflow-y: auto;
