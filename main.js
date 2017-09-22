@@ -63,6 +63,13 @@ function buildSelectedSection(beer) {
 
 //Get the details of a beer
 function selectBeer(id) {
+
+  //Remove active from all the others
+  $('.beer-option').removeClass("active");
+
+  //Show as active in the beer list
+  $('#' + id).addClass("active");
+
   $.get(API_URL + 'beer/' + id, function(result) {
     buildSelectedSection(result['data']);
   })
@@ -76,7 +83,9 @@ function buildBeersList() {
     beer = beers[i];
 
     var link = $("<a>", {
-      onclick: "selectBeer('" + beer['id'] + "')"
+      onclick: "selectBeer('" + beer['id'] + "')",
+      id: beer['id'],
+      class: "beer-option"
     }).text(beer["name"]);
 
     $("#beers").append(link);
