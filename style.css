@@ -78,10 +78,16 @@ h3, h4 {
   overflow-y: auto;
   box-sizing: border-box;
   padding: 60px 40px;
+  font-size: 14px;
 }
 
 #selected #title {
   font-size: 24px;
+}
+
+#selected #abv, #selected #ibu, #selected #srm, #selected #og, #selected #style {
+  font-weight: bold;
+  font-size: 16px;
 }
 
 #selected img {
