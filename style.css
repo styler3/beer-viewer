@@ -115,6 +115,10 @@ h3, h4 {
   margin: 0;
 }
 
+#selected h4 + p { /* directly after small heading */
+  margin-top: 0;
+}
+
 .alcohol {
   display: inline-block;
   margin-right: 20px;
